@@ -50,29 +50,98 @@
             </div>
             <div class="hero-image">
                 <div class="img-wrapper">
-                    <svg class="placeholder-img" viewBox="0 0 800 500" width="100%" height="auto">
-                        <rect width="800" height="500" rx="16" fill="#f5eaf0"/>
-                        <rect x="40" y="40" width="200" height="120" rx="8" fill="#e8d8e8"/>
-                        <rect x="260" y="40" width="500" height="120" rx="8" fill="#e8d8e8"/>
-                        <rect x="40" y="180" width="720" height="60" rx="8" fill="#e8d8e8"/>
-                        <rect x="40" y="260" width="350" height="200" rx="8" fill="#e8d8e8"/>
-                        <rect x="410" y="260" width="350" height="200" rx="8" fill="#e8d8e8"/>
-                        <circle cx="120" cy="100" r="30" fill="#d47a9e" opacity="0.3"/>
-                        <circle cx="320" cy="100" r="20" fill="#d47a9e" opacity="0.2"/>
-                        <circle cx="500" cy="100" r="25" fill="#d47a9e" opacity="0.15"/>
-                        <rect x="60" y="190" width="100" height="30" rx="6" fill="#d47a9e" opacity="0.2"/>
-                        <rect x="180" y="190" width="80" height="30" rx="6" fill="#d47a9e" opacity="0.15"/>
-                        <rect x="280" y="190" width="120" height="30" rx="6" fill="#d47a9e" opacity="0.2"/>
-                        <text x="50" y="310" font-family="Quicksand, sans-serif" font-size="18" fill="#8a7a8a" font-weight="600">Mochi Launcher</text>
-                        <text x="50" y="340" font-family="Quicksand, sans-serif" font-size="13" fill="#aa9aaa">Version 2.0.0</text>
-                        <text x="50" y="370" font-family="Quicksand, sans-serif" font-size="12" fill="#bbabbb">Ready to play</text>
-                        <rect x="430" y="280" width="310" height="160" rx="8" fill="#d47a9e" opacity="0.08"/>
-                        <circle cx="450" cy="310" r="12" fill="#d47a9e" opacity="0.2"/>
-                        <circle cx="480" cy="310" r="12" fill="#d47a9e" opacity="0.15"/>
-                        <circle cx="510" cy="310" r="12" fill="#d47a9e" opacity="0.1"/>
-                        <text x="450" y="350" font-family="Quicksand, sans-serif" font-size="14" fill="#8a7a8a">Mods installed: 12</text>
-                        <text x="450" y="375" font-family="Quicksand, sans-serif" font-size="14" fill="#8a7a8a">Textures: loaded</text>
-                        <text x="450" y="400" font-family="Quicksand, sans-serif" font-size="14" fill="#8a7a8a">FPS: 144</text>
+                    <!-- INTERFAZ FALSA DE MOCHI CLIENT (SVG) -->
+                    <svg class="placeholder-img" viewBox="0 0 860 580" width="100%" height="auto">
+                        <!-- Fondo de la ventana -->
+                        <rect width="860" height="580" rx="18" fill="#f5eaf0" stroke="#d47a9e" stroke-width="1.5"/>
+                        
+                        <!-- Barra de título -->
+                        <rect x="0" y="0" width="860" height="48" rx="18" fill="#d47a9e" opacity="0.15"/>
+                        <rect x="0" y="24" width="860" height="24" fill="#d47a9e" opacity="0.10"/>
+                        
+                        <!-- Botones de ventana -->
+                        <circle cx="30" cy="24" r="8" fill="#ff6b6b"/>
+                        <circle cx="54" cy="24" r="8" fill="#ffd93d"/>
+                        <circle cx="78" cy="24" r="8" fill="#6bcb77"/>
+                        
+                        <!-- Logo pequeño en la barra -->
+                        <image href="logo.png" x="100" y="10" width="28" height="28" clip-path="url(#clip-circle)"/>
+                        <defs>
+                            <clipPath id="clip-circle">
+                                <circle cx="114" cy="24" r="14"/>
+                            </clipPath>
+                        </defs>
+                        <text x="140" y="30" font-family="Quicksand, sans-serif" font-size="16" font-weight="700" fill="#4a2a4a">Mochi Launcher</text>
+                        
+                        <!-- Barra lateral izquierda -->
+                        <rect x="0" y="48" width="200" height="532" rx="0" fill="#fff" opacity="0.4"/>
+                        
+                        <!-- Elementos del menú lateral -->
+                        <rect x="16" y="72" width="168" height="32" rx="8" fill="#d47a9e" opacity="0.15"/>
+                        <text x="32" y="93" font-family="Quicksand, sans-serif" font-size="13" font-weight="600" fill="#4a2a4a">Dashboard</text>
+                        
+                        <rect x="16" y="116" width="168" height="32" rx="8" fill="transparent"/>
+                        <text x="32" y="137" font-family="Quicksand, sans-serif" font-size="13" fill="#6a4a6a">Mods</text>
+                        
+                        <rect x="16" y="160" width="168" height="32" rx="8" fill="transparent"/>
+                        <text x="32" y="181" font-family="Quicksand, sans-serif" font-size="13" fill="#6a4a6a">Texture Packs</text>
+                        
+                        <rect x="16" y="204" width="168" height="32" rx="8" fill="transparent"/>
+                        <text x="32" y="225" font-family="Quicksand, sans-serif" font-size="13" fill="#6a4a6a">Settings</text>
+                        
+                        <rect x="16" y="248" width="168" height="32" rx="8" fill="transparent"/>
+                        <text x="32" y="269" font-family="Quicksand, sans-serif" font-size="13" fill="#6a4a6a">Help</text>
+                        
+                        <!-- Avatar de perfil en la barra lateral -->
+                        <circle cx="100" cy="520" r="32" fill="#d47a9e" opacity="0.2"/>
+                        <text x="90" y="527" font-family="Quicksand, sans-serif" font-size="18" fill="#4a2a4a">👤</text>
+                        <text x="100" y="570" font-family="Quicksand, sans-serif" font-size="11" fill="#6a4a6a">Player</text>
+                        
+                        <!-- Área principal -->
+                        <rect x="216" y="64" width="628" height="500" rx="12" fill="#fff" opacity="0.5"/>
+                        
+                        <!-- Título de la sección -->
+                        <text x="240" y="100" font-family="Quicksand, sans-serif" font-size="20" font-weight="700" fill="#4a2a4a">Mochi Client</text>
+                        
+                        <!-- Tarjetas de información -->
+                        <rect x="240" y="120" width="180" height="80" rx="10" fill="#f5eaf0" stroke="#d47a9e" stroke-width="1" opacity="0.6"/>
+                        <text x="260" y="150" font-family="Quicksand, sans-serif" font-size="14" font-weight="600" fill="#4a2a4a">Version</text>
+                        <text x="260" y="175" font-family="Quicksand, sans-serif" font-size="16" fill="#6a4a6a">2.0.0</text>
+                        
+                        <rect x="440" y="120" width="180" height="80" rx="10" fill="#f5eaf0" stroke="#d47a9e" stroke-width="1" opacity="0.6"/>
+                        <text x="460" y="150" font-family="Quicksand, sans-serif" font-size="14" font-weight="600" fill="#4a2a4a">Mods</text>
+                        <text x="460" y="175" font-family="Quicksand, sans-serif" font-size="16" fill="#6a4a6a">12 installed</text>
+                        
+                        <rect x="640" y="120" width="180" height="80" rx="10" fill="#f5eaf0" stroke="#d47a9e" stroke-width="1" opacity="0.6"/>
+                        <text x="660" y="150" font-family="Quicksand, sans-serif" font-size="14" font-weight="600" fill="#4a2a4a">FPS</text>
+                        <text x="660" y="175" font-family="Quicksand, sans-serif" font-size="16" fill="#6a4a6a">144</text>
+                        
+                        <!-- Lista de mods -->
+                        <text x="240" y="240" font-family="Quicksand, sans-serif" font-size="14" font-weight="600" fill="#4a2a4a">Recent Mods</text>
+                        
+                        <rect x="240" y="256" width="580" height="36" rx="6" fill="#f5eaf0" opacity="0.5"/>
+                        <text x="260" y="280" font-family="Quicksand, sans-serif" font-size="13" fill="#4a3a4a">OptiFine</text>
+                        <text x="700" y="280" font-family="Quicksand, sans-serif" font-size="12" fill="#8a7a8a">v1.20.4</text>
+                        
+                        <rect x="240" y="300" width="580" height="36" rx="6" fill="#f5eaf0" opacity="0.5"/>
+                        <text x="260" y="324" font-family="Quicksand, sans-serif" font-size="13" fill="#4a3a4a">Sodium</text>
+                        <text x="700" y="324" font-family="Quicksand, sans-serif" font-size="12" fill="#8a7a8a">v0.5.3</text>
+                        
+                        <rect x="240" y="344" width="580" height="36" rx="6" fill="#f5eaf0" opacity="0.5"/>
+                        <text x="260" y="368" font-family="Quicksand, sans-serif" font-size="13" fill="#4a3a4a">Lunar Client API</text>
+                        <text x="700" y="368" font-family="Quicksand, sans-serif" font-size="12" fill="#8a7a8a">v2.1.0</text>
+                        
+                        <rect x="240" y="388" width="580" height="36" rx="6" fill="#f5eaf0" opacity="0.5"/>
+                        <text x="260" y="412" font-family="Quicksand, sans-serif" font-size="13" fill="#4a3a4a">Fabric API</text>
+                        <text x="700" y="412" font-family="Quicksand, sans-serif" font-size="12" fill="#8a7a8a">v0.88.1</text>
+                        
+                        <!-- Botón de inicio -->
+                        <rect x="240" y="440" width="180" height="44" rx="22" fill="#d47a9e" opacity="0.3"/>
+                        <text x="310" y="468" font-family="Quicksand, sans-serif" font-size="16" font-weight="700" fill="#4a2a4a">Play</text>
+                        
+                        <!-- Indicador de estado -->
+                        <circle cx="800" y="520" r="6" fill="#6bcb77"/>
+                        <text x="812" y="525" font-family="Quicksand, sans-serif" font-size="12" fill="#6a4a6a">Online</text>
                     </svg>
                 </div>
                 <div class="caption">Mochi Launcher interface (v2.0)</div>
