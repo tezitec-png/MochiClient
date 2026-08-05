@@ -6,29 +6,39 @@
 
 body {
     font-family: 'Quicksand', 'Segoe UI', sans-serif;
-    background: #faf0f5;
-    color: #3d2c3d;
     min-height: 100vh;
     overflow-x: hidden;
+    position: relative;
 }
 
-.bg-pattern {
+/* ===== FONDO CON IMAGEN AL 70% ===== */
+.bg-image {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background:
-        radial-gradient(circle at 20% 50%, rgba(255, 182, 193, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(212, 122, 158, 0.10) 0%, transparent 50%),
-        radial-gradient(circle at 50% 100%, rgba(255, 182, 193, 0.08) 0%, transparent 40%);
-    pointer-events: none;
+    background-image: url('fondo.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.7;
     z-index: 0;
+}
+
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(250, 240, 245, 0.5);
+    z-index: 1;
 }
 
 .container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 1100px;
     margin: 0 auto;
     padding: 30px 24px 60px;
@@ -43,8 +53,8 @@ header {
     display: inline-flex;
     align-items: center;
     gap: 18px;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(4px);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6px);
     padding: 12px 32px 12px 20px;
     border-radius: 60px;
     box-shadow: 0 4px 20px rgba(106, 58, 90, 0.10);
@@ -75,8 +85,13 @@ header {
 
 .subtitle {
     font-size: 17px;
-    color: #7a5a7a;
+    color: #5a3a5a;
     font-weight: 400;
+    background: rgba(255,255,255,0.4);
+    backdrop-filter: blur(4px);
+    padding: 4px 20px;
+    border-radius: 30px;
+    display: inline-block;
 }
 
 .version-tag {
@@ -98,7 +113,7 @@ header {
     border-radius: 30px;
     font-size: 13px;
     font-weight: 600;
-    margin-top: 6px;
+    margin-top: 8px;
     letter-spacing: 0.5px;
     box-shadow: 0 2px 12px rgba(212, 122, 158, 0.3);
 }
@@ -113,6 +128,11 @@ header {
 
 .hero-text {
     flex: 1 1 340px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(4px);
+    padding: 24px 28px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .hero-text h2 {
@@ -200,8 +220,9 @@ header {
 
 .download-meta {
     font-size: 14px;
-    color: #8a7a8a;
+    color: #6a4a6a;
     margin-top: 14px;
+    font-weight: 500;
 }
 
 .hero-image {
@@ -211,7 +232,7 @@ header {
 
 .hero-image .img-wrapper {
     background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
     border-radius: 24px;
     padding: 14px;
     box-shadow: 0 8px 40px rgba(106, 58, 90, 0.10);
@@ -226,8 +247,9 @@ header {
 
 .hero-image .caption {
     font-size: 13px;
-    color: #8a7a8a;
+    color: #7a5a7a;
     margin-top: 8px;
+    font-weight: 500;
 }
 
 .features {
@@ -242,7 +264,7 @@ header {
 .feature {
     text-align: center;
     padding: 20px 14px;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(4px);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.7);
@@ -254,9 +276,10 @@ header {
     box-shadow: 0 8px 24px rgba(106, 58, 90, 0.08);
 }
 
-.feature .feature-icon {
+.feature-emoji {
+    font-size: 32px;
     display: block;
-    margin: 0 auto 6px;
+    margin-bottom: 6px;
 }
 
 .feature h4 {
@@ -272,7 +295,7 @@ header {
 }
 
 .requirements {
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(4px);
     padding: 24px 30px;
     border-radius: 20px;
@@ -317,6 +340,10 @@ header {
     margin-top: 20px;
     font-size: 14px;
     color: #8a7a8a;
+    background: rgba(255,255,255,0.3);
+    backdrop-filter: blur(4px);
+    border-radius: 20px;
+    padding: 20px;
 }
 
 .footer a {
@@ -376,5 +403,8 @@ header {
     }
     .features {
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+    .hero-text {
+        padding: 16px;
     }
 }
